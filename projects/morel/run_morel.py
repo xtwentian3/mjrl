@@ -38,7 +38,7 @@ parser.add_argument('--output', '-o', type=str, required=True, help='location to
 parser.add_argument('--config', '-c', type=str, required=True, help='path to config file with exp params')
 parser.add_argument('--include', '-i', type=str, required=False, help='package to import')
 args = parser.parse_args()
-OUT_DIR = args.output
+OUT_DIR = f'./logging_policy/{args.output}'
 if not os.path.exists(OUT_DIR): os.mkdir(OUT_DIR)
 if not os.path.exists(OUT_DIR+'/iterations'): os.mkdir(OUT_DIR+'/iterations')
 if not os.path.exists(OUT_DIR+'/logs'): os.mkdir(OUT_DIR+'/logs')
@@ -81,7 +81,8 @@ def buffer_size(paths_list):
 # ===============================================================================
 # Setup functions and environment
 # ===============================================================================
-
+print("***************************************************************************")
+print("starting... ...")
 np.random.seed(SEED)
 torch.random.manual_seed(SEED)
 
@@ -118,6 +119,7 @@ if 'obs_mask' in globals(): e.obs_mask = obs_mask
 if job_data['model_file'] is not None:
     model_trained = True
     models = pickle.load(open(job_data['model_file'], 'rb'))
+    # print(job_data['model_file'])
 else:
     model_trained = False
     models = [WorldModel(state_dim=e.observation_dim, act_dim=e.action_dim, seed=SEED+i, 
@@ -311,4 +313,5 @@ for outer_iter in range(job_data['num_iter']):
 pickle.dump(agent, open(OUT_DIR + '/iterations/agent_final.pickle', 'wb'))
 policy.set_transformations(in_scale = 1.0 / e.obs_mask)
 pickle.dump(policy, open(OUT_DIR + '/iterations/policy_final.pickle', 'wb'))
+print("Running: I am done!")
 

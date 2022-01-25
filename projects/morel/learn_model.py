@@ -85,3 +85,4 @@ for i, model in enumerate(models):
         reward_loss = model.fit_reward(s, a, r.reshape(-1, 1), **job_data)
 
 pickle.dump(models, open(args.output, 'wb'))
+print("Models have learned.")

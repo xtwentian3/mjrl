@@ -2,7 +2,7 @@
 
 # general inputs
 
-'env_name'      :   'Hopper-v2',
+'env_name'      :   'Walker2d-v2',
 'act_repeat'    :   1,
 'seed'          :   666,
 'num_iter'      :   500,
@@ -11,9 +11,9 @@
 'save_freq'     :   25,
 'device'        :   'cuda',
 'learn_reward'  :   False,
-'data_file'     :   'datasets/hopper-medium-v2.pickle',
+'data_file'     :   'datasets/walker2d-medium-v2.pickle',
 'reward_file'   :   '../model_based_npg/utils/reward_functions/gym_hopper.py',
-'model_file'    :   'hopper-medium-v2-models.pickle',
+'model_file'    :   'logging_policy/walker2d-medium-v2-models.pickle',
 'bc_init'       :   True,
 'pessimism_coef':   3.0,
 'truncate_reward' : 0.0,
